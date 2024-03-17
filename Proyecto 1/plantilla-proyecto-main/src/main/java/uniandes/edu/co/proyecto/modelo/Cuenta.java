@@ -23,7 +23,7 @@ public class Cuenta {
 
     private String estado;
 
-    private Integer saldo;
+    private float saldo;
 
     private Date fecha_ultima_transaccion;
 
@@ -33,6 +33,7 @@ public class Cuenta {
         @JoinColumn(name = "NUM_DOC_CLIENTE", referencedColumnName = "NUM_DOC")
     })
     private Cliente cliente;
+
 
     public Cuenta() {
         ;
@@ -71,11 +72,11 @@ public class Cuenta {
         this.estado = estado;
     }
 
-    public Integer getSaldo() {
+    public float getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(Integer saldo) {
+    public void setSaldo(float saldo) {
         this.saldo = saldo;
     }
 

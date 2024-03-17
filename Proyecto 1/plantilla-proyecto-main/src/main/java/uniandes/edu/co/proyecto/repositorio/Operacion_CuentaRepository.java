@@ -8,32 +8,30 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.Cliente;
-import uniandes.edu.co.proyecto.modelo.Cuenta;
-import uniandes.edu.co.proyecto.modelo.Empleado;
+
 import uniandes.edu.co.proyecto.modelo.Operacion_Cuenta;
-import uniandes.edu.co.proyecto.modelo.Punto_Atencion;
 
 public interface Operacion_CuentaRepository extends JpaRepository<Operacion_Cuenta, Integer>{
     
-    @Query(value = "SELECT * FROM OPERACIONES_CUENTA", nativeQuery = true)
+    @Query(value = "SELECT * FROM operaciones_cuenta", nativeQuery = true)
     Collection<Operacion_Cuenta> darOperaciones_Cuentas();
 
-    @Query(value = "SELECT * FROM OPERACIONES_CUENTA WHERE ID=:ID", nativeQuery = true)
+    @Query(value = "SELECT * FROM operaciones_cuenta WHERE ID=:ID", nativeQuery = true)
     Operacion_Cuenta darOperacion_Cuenta(@Param("ID") Integer ID);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO OPERACIONES_CUENTA(ID, monto, hora, fecha, tipo, numero_cuenta, tipo_doc_empleado, num_doc_empleado, tipo_doc_cliente, num_doc_cliente, punto_atencion) VALUES (bancos_sequence.nextval, :monto, :hora, :fecha, :tipo, :numero_cuenta, :tipo_doc_empleado, :num_doc_empleado, :tipo_doc_cliente, :num_doc_cliente, :punto_atencion)", nativeQuery = true)
-    void insertarOperacion_Cuenta (@Param("monto") float monto, @Param("hora") Date hora, @Param("fecha") Date fecha, @Param("tipo") String tipo, @Param("numero_cuenta") Cuenta numero_cuenta, @Param("tipo_doc_empleado") String string, @Param ("num_doc_empleado") String string2, @Param("tipo_doc_cliente") String string3, @Param("num_doc_cliente") String string4, @Param("punto_atencion") Punto_Atencion punto_atencion);
+    @Query(value = "INSERT INTO operaciones_cuenta(ID, tipo_operacion_cuenta, numero_cuenta, monto, hora, fecha, tipo_doc_empleado, num_doc_empleado, tipo_doc_cliente, num_doc_cliente, punto_atencion) VALUES (operacion_cuenta_sequence.nextval, :tipo_operacion_cuenta, :numero_cuenta, :monto, :hora, :fecha, :tipo_doc_empleado, :num_doc_empleado, :tipo_doc_cliente, :num_doc_cliente, :punto_atencion)", nativeQuery = true)
+    void insertarOperacion_Cuenta (@Param("tipo_operacion_cuenta") String tipo_operacion_cuenta, @Param("numero_cuenta") String numero_cuenta, @Param("monto") float monto, @Param("hora") Date hora, @Param("fecha") Date fecha, @Param("tipo_doc_empleado") String tipo_doc_empleado, @Param ("num_doc_empleado") String num_doc_empelado, @Param("tipo_doc_cliente") String tipo_doc_cliente, @Param("num_doc_cliente") String num_doc_cliente, @Param("punto_atencion") Integer punto_atencion);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE OPERACIONES_CUENTA SET monto = :monto, hora = :hora, fecha = :fecha, tipo = :tipo, numero_cuenta = :numero_cuenta, tipo_doc_empleado = :tipo_doc_empleado, num_doc_empleado = :num_doc_empleado, tipo_doc_cliente = :tipo_doc_cliente, num_doc_cliente = :num_doc_cliente, punto_atencion = :punto_atencion  WHERE ID=:ID", nativeQuery = true)
-    void actualizarOperacion_Cuenta (@Param("ID") Integer ID, @Param("monto") float monto, @Param("hora") Date hora, @Param("fecha") Date fecha, @Param("tipo") String tipo, @Param("numero_cuenta") Cuenta numero_cuenta, @Param("tipo_doc_empleado") String string, @Param ("num_doc_empleado") String string2, @Param("tipo_doc_cliente") String string3, @Param("num_doc_cliente") String string4, @Param("punto_atencion") Punto_Atencion punto_atencion);
+    @Query(value = "UPDATE operaciones_cuenta SET tipo_operacion_cuenta = :tipo_operacion_cuenta, numero_cuenta = :numero_cuenta, monto = :monto, hora = :hora, fecha = :fecha, tipo_doc_empleado = :tipo_doc_empleado, num_doc_empleado = :num_doc_empleado, tipo_doc_cliente = :tipo_doc_cliente, num_doc_cliente = :num_doc_cliente, punto_atencion = :punto_atencion  WHERE ID=:ID", nativeQuery = true)
+    void actualizarOperacion_Cuenta (@Param("ID") Integer ID, @Param("tipo_operacion_cuenta") String tipo_operacion_cuenta, @Param("numero_cuenta") String numero_cuenta, @Param("monto") float monto, @Param("hora") Date hora, @Param("fecha") Date fecha, @Param("tipo_doc_empleado") String tipo_doc_empleado, @Param ("num_doc_empleado") String num_doc_empelado, @Param("tipo_doc_cliente") String tipo_doc_cliente, @Param("num_doc_cliente") String num_doc_cliente, @Param("punto_atencion") Integer punto_atencion);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM OPERACIONES_CUENTA WHERE ID=:ID", nativeQuery = true)
+    @Query(value = "DELETE FROM operaciones_cuenta WHERE ID=:ID", nativeQuery = true)
     void eliminarOperacion_Cuenta (@Param("ID") Integer ID);
+
 }

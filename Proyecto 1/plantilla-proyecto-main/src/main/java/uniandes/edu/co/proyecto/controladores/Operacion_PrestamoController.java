@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.controladores;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +32,7 @@ public class Operacion_PrestamoController {
 
     @PostMapping("/operaciones_prestamos/new/save")
     public String operacion_prestamoGuardar(@ModelAttribute Operacion_Prestamo operacion_Prestamo){
-        operacion_PrestamoRepository.insertarOperacion_Prestamo(operacion_Prestamo.getMonto(), operacion_Prestamo.getHora(), operacion_Prestamo.getFecha(), operacion_Prestamo.getTipo_operacion_prestamo(), operacion_Prestamo.getPrestamo(), operacion_Prestamo.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), operacion_Prestamo.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), operacion_Prestamo.getCliente().getClientePK().getTipo_doc(), operacion_Prestamo.getCliente().getClientePK().getNum_doc(), operacion_Prestamo.getPunto_atencion());
+        operacion_PrestamoRepository.insertarOperacion_Prestamo(operacion_Prestamo.getTipo_operacion_prestamo(), operacion_Prestamo.getPrestamo().getId(), operacion_Prestamo.getMonto(), operacion_Prestamo.getHora(), operacion_Prestamo.getFecha(), operacion_Prestamo.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), operacion_Prestamo.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), operacion_Prestamo.getCliente().getClientePK().getTipo_doc(), operacion_Prestamo.getCliente().getClientePK().getNum_doc(), operacion_Prestamo.getPunto_atencion().getId());
         return "redirect:/operaciones_prestamos";
     }
 
@@ -48,7 +49,7 @@ public class Operacion_PrestamoController {
 
     @PostMapping("/operaciones_prestamos/{id}/edit/save")
     public String operacion_prestamoEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute Operacion_Prestamo operacion_Prestamo) {
-        operacion_PrestamoRepository.actualizarOperacion_Prestamo(id, operacion_Prestamo.getMonto(), operacion_Prestamo.getHora(), operacion_Prestamo.getFecha(), operacion_Prestamo.getTipo_operacion_prestamo(), operacion_Prestamo.getPrestamo(), operacion_Prestamo.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), operacion_Prestamo.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), operacion_Prestamo.getCliente().getClientePK().getTipo_doc(), operacion_Prestamo.getCliente().getClientePK().getNum_doc(), operacion_Prestamo.getPunto_atencion());
+        operacion_PrestamoRepository.actualizarOperacion_Prestamo(id, operacion_Prestamo.getTipo_operacion_prestamo(), operacion_Prestamo.getPrestamo().getId(), operacion_Prestamo.getMonto(), operacion_Prestamo.getHora(), operacion_Prestamo.getFecha(), operacion_Prestamo.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), operacion_Prestamo.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), operacion_Prestamo.getCliente().getClientePK().getTipo_doc(), operacion_Prestamo.getCliente().getClientePK().getNum_doc(), operacion_Prestamo.getPunto_atencion().getId());
         return "redirect:/operaciones_prestamos";
     }
 

@@ -1,7 +1,6 @@
 package uniandes.edu.co.proyecto.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,11 +34,13 @@ public class ClienteController {
 
     @PostMapping("/cliente/new/save")
     public String clienteGuardar(@ModelAttribute Cliente cliente) {
-        clienteRepository.insertarCliente(clientePk.getTipo_doc(), clientePk.getNum_doc(), cliente.getNombre(), cliente.getNacionalidad(), 
-        cliente.getTelefono(), cliente.getLogin(), cliente.getClave(), cliente.getDireccion(), 
-        cliente.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), cliente.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), cliente.getTipo_cliente());
+        clienteRepository.insertarCliente(clientePk.getTipo_doc(), clientePk.getNum_doc(), cliente.getTipo_cliente(), cliente.getNombre(), cliente.getNacionalidad(), 
+        cliente.getTelefono(), cliente.getLogin(), cliente.getClave(), cliente.getDireccion().getId(), 
+        cliente.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), cliente.getEmpleadoCreador().getEmpleadoPK().getNum_doc());
         return "redirect:/cliente"; 
     }
+
+
 
     @GetMapping("/cliente/{tipoDoc}/{numDoc}/edit")
     public String clienteEditarForm(@PathVariable("tipoDoc") String tipoDoc, @PathVariable("numDoc") String numDoc, Model model) {

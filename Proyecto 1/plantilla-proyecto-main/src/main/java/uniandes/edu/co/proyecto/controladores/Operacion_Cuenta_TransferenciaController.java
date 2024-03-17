@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.controladores;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,9 +34,11 @@ public class Operacion_Cuenta_TransferenciaController {
 
     @PostMapping("/operaciones_cuentas_transferencias/new/save")
     public String operacion_cuenta_transferenciaGuardar(@ModelAttribute Operacion_Cuenta_Transferencia operacion_Cuenta_Transferencia){
-        operacion_Cuenta_TransferenciaRepository.insertarOperacion_Cuenta_Transferencia(operacion_Cuenta_Transferencia.getMonto(), operacion_Cuenta_Transferencia.getHora(), operacion_Cuenta_Transferencia.getFecha(), operacion_Cuenta_Transferencia.getTipo(), operacion_Cuenta_Transferencia.getNumero_cuenta_origen(), operacion_Cuenta_Transferencia.getNumero_cuenta_destino(), operacion_Cuenta_Transferencia.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), operacion_Cuenta_Transferencia.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), operacion_Cuenta_Transferencia.getCliente().getClientePK().getTipo_doc(), operacion_Cuenta_Transferencia.getCliente().getClientePK().getNum_doc(), operacion_Cuenta_Transferencia.getPunto_atencion());
+        operacion_Cuenta_TransferenciaRepository.insertarOperacion_Cuenta_Transferencia(operacion_Cuenta_Transferencia.getTipo_operacion_cuenta_transferencia(), operacion_Cuenta_Transferencia.getMonto(), operacion_Cuenta_Transferencia.getHora(), operacion_Cuenta_Transferencia.getFecha(), operacion_Cuenta_Transferencia.getNumero_cuenta_origen().getNumero_cuenta(), operacion_Cuenta_Transferencia.getNumero_cuenta_destino().getNumero_cuenta(), operacion_Cuenta_Transferencia.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), operacion_Cuenta_Transferencia.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), operacion_Cuenta_Transferencia.getCliente().getClientePK().getTipo_doc(), operacion_Cuenta_Transferencia.getCliente().getClientePK().getNum_doc(), operacion_Cuenta_Transferencia.getPunto_atencion().getId());
         return "redirect:/operaciones_cuentas_transferencias";
     }
+
+
 
     @GetMapping("/operaciones_cuentas_transferencias/{id}/edit")
     public String operacion_cuenta_transferenciaEditarForm(@PathVariable("id") Integer id, Model model){
@@ -49,7 +53,7 @@ public class Operacion_Cuenta_TransferenciaController {
 
     @PostMapping("/operaciones_cuentas_transferencias/{id}/edit/save")
     public String operacion_cuenta_transferenciaEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute Operacion_Cuenta_Transferencia operacion_Cuenta_Transferencia) {
-        operacion_Cuenta_TransferenciaRepository.actualizarOperacion_Cuenta_Transferencia(id, operacion_Cuenta_Transferencia.getMonto(), operacion_Cuenta_Transferencia.getHora(), operacion_Cuenta_Transferencia.getFecha(), operacion_Cuenta_Transferencia.getTipo(), operacion_Cuenta_Transferencia.getNumero_cuenta_origen(), operacion_Cuenta_Transferencia.getNumero_cuenta_destino(), operacion_Cuenta_Transferencia.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), operacion_Cuenta_Transferencia.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), operacion_Cuenta_Transferencia.getCliente().getClientePK().getTipo_doc(), operacion_Cuenta_Transferencia.getCliente().getClientePK().getNum_doc(), operacion_Cuenta_Transferencia.getPunto_atencion());
+        operacion_Cuenta_TransferenciaRepository.actualizarOperacion_Cuenta_Transferencia(id, operacion_Cuenta_Transferencia.getTipo_operacion_cuenta_transferencia(), operacion_Cuenta_Transferencia.getMonto(), operacion_Cuenta_Transferencia.getHora(), operacion_Cuenta_Transferencia.getFecha(), operacion_Cuenta_Transferencia.getNumero_cuenta_origen().getNumero_cuenta(), operacion_Cuenta_Transferencia.getNumero_cuenta_destino().getNumero_cuenta(), operacion_Cuenta_Transferencia.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), operacion_Cuenta_Transferencia.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), operacion_Cuenta_Transferencia.getCliente().getClientePK().getTipo_doc(), operacion_Cuenta_Transferencia.getCliente().getClientePK().getNum_doc(), operacion_Cuenta_Transferencia.getPunto_atencion().getId());
         return "redirect:/operaciones_cuentas_transferencias";
     }
 

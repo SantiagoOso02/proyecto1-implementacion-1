@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "puntos_atencion")
 public class Punto_Atencion {
+    
     @Id
     private Integer id;
 

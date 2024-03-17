@@ -22,10 +22,7 @@ public class Operacion_Cuenta_Transferencia {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Integer ID;
-    private Integer monto;
-    private Date hora;
-    private Date fecha;
-    private String tipo;
+    private String tipo_operacion_cuenta_transferencia;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "NUMERO_CUENTA_ORIGEN", referencedColumnName = "NUMERO_CUENTA")
@@ -34,6 +31,13 @@ public class Operacion_Cuenta_Transferencia {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "NUMERO_CUENTA_DESTINO", referencedColumnName = "NUMERO_CUENTA")
     private Cuenta numero_cuenta_destino;
+
+    private float monto;
+
+    private Date hora;
+    
+    private Date fecha;
+
 
     @ManyToOne
     @JoinColumns({
@@ -57,14 +61,14 @@ public class Operacion_Cuenta_Transferencia {
         ;
     }
 
-    public Operacion_Cuenta_Transferencia(Integer ID, Integer monto, Date hora, Date fecha, String tipo, Cuenta numero_cuenta_origen, Cuenta numero_cuenta_destino, Empleado empleadoCreador, Cliente cliente, Punto_Atencion punto_atencion) {
+    public Operacion_Cuenta_Transferencia(Integer ID, String tipo_operacion_cuenta_transferencia, Cuenta numero_cuenta_origen, Cuenta numero_cuenta_destino, float monto, Date hora, Date fecha, Empleado empleadoCreador, Cliente cliente, Punto_Atencion punto_atencion) {
         this.ID = ID;
+        this.tipo_operacion_cuenta_transferencia = tipo_operacion_cuenta_transferencia;
+        this.numero_cuenta_origen = numero_cuenta_origen;
+        this.numero_cuenta_destino = numero_cuenta_destino;
         this.monto = monto;
         this.hora = hora;
         this.fecha = fecha;
-        this.tipo = tipo;
-        this.numero_cuenta_origen = numero_cuenta_origen;
-        this.numero_cuenta_destino = numero_cuenta_destino;
         this.empleadoCreador = empleadoCreador;
         this.cliente = cliente;
         this.punto_atencion = punto_atencion;
@@ -78,11 +82,35 @@ public class Operacion_Cuenta_Transferencia {
         ID = iD;
     }
 
-    public Integer getMonto() {
+    public String getTipo_operacion_cuenta_transferencia() {
+        return tipo_operacion_cuenta_transferencia;
+    }
+
+    public void setTipo_operacion_cuenta_transferencia(String tipo_operacion_cuenta_transferencia) {
+        this.tipo_operacion_cuenta_transferencia = tipo_operacion_cuenta_transferencia;
+    }
+
+    public Cuenta getNumero_cuenta_origen() {
+        return numero_cuenta_origen;
+    }
+
+    public void setNumero_cuenta_origen(Cuenta numero_cuenta_origen) {
+        this.numero_cuenta_origen = numero_cuenta_origen;
+    }
+
+    public Cuenta getNumero_cuenta_destino() {
+        return numero_cuenta_destino;
+    }
+
+    public void setNumero_cuenta_destino(Cuenta numero_cuenta_destino) {
+        this.numero_cuenta_destino = numero_cuenta_destino;
+    }
+
+    public float getMonto() {
         return monto;
     }
 
-    public void setMonto(Integer monto) {
+    public void setMonto(float monto) {
         this.monto = monto;
     }
 
@@ -100,30 +128,6 @@ public class Operacion_Cuenta_Transferencia {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public Cuenta getNumero_cuenta_origen() {
-        return numero_cuenta_origen;
-    }
-
-    public void setNumero_cuenta_origen(Cuenta numero_cuenta_origen) {
-        this.numero_cuenta_origen = numero_cuenta_origen;
-    }
-
-    public Cuenta getNumero_cuenta_destino() {
-        return numero_cuenta_destino;
-    }
-
-    public void setNumero_cuenta_destino(Cuenta numero_cuenta_destino) {
-        this.numero_cuenta_destino = numero_cuenta_destino;
     }
 
     public Empleado getEmpleadoCreador() {
@@ -150,6 +154,7 @@ public class Operacion_Cuenta_Transferencia {
         this.punto_atencion = punto_atencion;
     }
 
+    
 
 
 }

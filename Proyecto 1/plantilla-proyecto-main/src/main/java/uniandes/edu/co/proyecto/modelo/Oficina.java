@@ -24,21 +24,21 @@ public class Oficina {
 
     @ManyToOne
     @JoinColumns({
-        @JoinColumn(name = "TIPO_DOC_EMPLEADO_CREADOR", referencedColumnName = "TIPO_DOC"),
-        @JoinColumn(name = "NUM_DOC_EMPLEADO_CREADOR", referencedColumnName = "NUM_DOC")
+        @JoinColumn(name = "TIPO_DOC_EMPLEADO_GERENTE", referencedColumnName = "TIPO_DOC"),
+        @JoinColumn(name = "NUM_DOC_EMPLEADO_GERENTE", referencedColumnName = "NUM_DOC")
     })
-    private Empleado empleadoCreador;
+    private Empleado gerente;
 
     public Oficina() {
         ;
     }
 
-    public Oficina(Integer id, String nombre, Direccion direccion, Integer numero_puntos_atencion, Empleado empleadoCreador) {
+    public Oficina(Integer id, String nombre, Direccion direccion, Integer numero_puntos_atencion, Empleado gerente) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.numero_puntos_atencion = numero_puntos_atencion;
-        this.empleadoCreador = empleadoCreador;
+        this.gerente = gerente;
     }
 
     public Integer getId() {
@@ -73,13 +73,14 @@ public class Oficina {
         this.numero_puntos_atencion = numero_puntos_atencion;
     }
 
-    public Empleado getEmpleadoCreador() {
-        return empleadoCreador;
+    public Empleado getGerente() {
+        return gerente;
     }
 
-    public void setEmpleadoCreador(Empleado empleadoCreador) {
-        this.empleadoCreador = empleadoCreador;
+    public void setGerente(Empleado gerente) {
+        this.gerente = gerente;
     }
+    
 
     
 

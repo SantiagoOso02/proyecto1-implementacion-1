@@ -19,14 +19,13 @@ public interface DireccionRepository extends JpaRepository<Direccion, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value="INSERT INTO direcciones (id, direccion_fisica, direccion_electronica, ciudad, departamento, codigo_postal) VALUES (banco_sequence.nextval, :direccionFisica, :direccionElectronica, :ciudad, :departamento, :codigoPostal)", nativeQuery = true)
-    void insertarDireccion(@Param("direccionFisica") String direccionFisica, @Param("direccionElectronica") String direccionElectronica, @Param("ciudad") String ciudad, @Param("departamento") String departamento, @Param("codigoPostal") String codigoPostal);
+    @Query(value="INSERT INTO direcciones (id, direccion_fisica, direccion_electronica, ciudad, departamento, codigo_postal) VALUES (direccion_sequence.nextval, :direccion_fisica, :direccion_electronica, :ciudad, :departamento, :codigo_postal)", nativeQuery = true)
+    void insertarDireccion(@Param("direccion_fisica") String direccion_fisica, @Param("direccion_electronica") String direccion_electronica, @Param("ciudad") String ciudad, @Param("departamento") String departamento, @Param("codigo_postal") String codigo_postal);
     
     @Modifying
     @Transactional
-    @Query(value="UPDATE direcciones SET direccion_fisica = :direccionFisica, direccion_electronica = :direccionElectronica, ciudad = :ciudad, departamento = :departamento, codigo_postal = :codigoPostal WHERE id = :id", nativeQuery = true)
-    void actualizarDireccion(@Param("id") Integer id, @Param("direccionFisica") String direccionFisica, @Param("direccionElectronica") String direccionElectronica, @Param("ciudad") String ciudad, @Param("departamento") String departamento, @Param("codigoPostal") String codigoPostal);
-
+    @Query(value="UPDATE direcciones SET direccion_fisica = :direccion_fisica, direccion_electronica = :direccion_electronica, ciudad = :ciudad, departamento = :departamento, codigo_postal = :codigo_postal WHERE id = :id", nativeQuery = true)
+    void actualizarDireccion(@Param("id") Integer id, @Param("direccion_fisica") String direccion_fisica, @Param("direccion_electronica") String direccion_electronica, @Param("ciudad") String ciudad, @Param("departamento") String departamento, @Param("codigo_postal") String codigo_postal);
 
     @Modifying
     @Transactional

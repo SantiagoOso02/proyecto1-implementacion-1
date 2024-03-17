@@ -17,13 +17,13 @@ public class Prestamo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String tipo_prestamo;
+    private String tipo;
 
     private String estado;
 
-    private Integer monto;
+    private float monto;
     
-    private Integer interes;
+    private float interes;
 
     private Integer numero_cuotas;
 
@@ -40,9 +40,9 @@ public class Prestamo {
         ;
     }
 
-    public Prestamo(Integer id, String tipo_prestamo, String estado, Integer monto, Integer interes, Integer numero_cuotas, Integer dia_mes, Cliente cliente) {
+    public Prestamo(Integer id, String tipo, String estado, float monto, float interes, Integer numero_cuotas, Integer dia_mes, Cliente cliente) {
         this.id = id;
-        this.tipo_prestamo = tipo_prestamo;
+        this.tipo = tipo;
         this.estado = estado;
         this.monto = monto;
         this.interes = interes;
@@ -59,12 +59,12 @@ public class Prestamo {
         this.id = id;
     }
 
-    public String getTipo_prestamo() {
-        return tipo_prestamo;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTipo_prestamo(String tipo_prestamo) {
-        this.tipo_prestamo = tipo_prestamo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getEstado() {
@@ -75,19 +75,19 @@ public class Prestamo {
         this.estado = estado;
     }
 
-    public Integer getMonto() {
+    public float getMonto() {
         return monto;
     }
 
-    public void setMonto(Integer monto) {
+    public void setMonto(float monto) {
         this.monto = monto;
     }
 
-    public Integer getInteres() {
+    public float getInteres() {
         return interes;
     }
 
-    public void setInteres(Integer interes) {
+    public void setInteres(float interes) {
         this.interes = interes;
     }
 
@@ -115,5 +115,6 @@ public class Prestamo {
         this.cliente = cliente;
     }
 
+    
     
 }

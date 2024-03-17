@@ -28,6 +28,10 @@ public class Empleado {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "DIRECCION", referencedColumnName = "ID")
     private Direccion direccion;
+    
+    @ManyToOne
+    @JoinColumn(name = "PUNTO_ATENCION", referencedColumnName = "ID")
+    private Punto_Atencion punto_atencion;
 
     @ManyToOne
     @JoinColumns({
@@ -41,7 +45,8 @@ public class Empleado {
         ;
     }
 
-    public Empleado(EmpleadoPK empleadoPK, String tipo_empleado, String nombre, String nacionalidad, String telefono, String login, String clave, Direccion direccion, Empleado empleadoCreador) {
+    public Empleado(EmpleadoPK empleadoPK, String tipo_empleado, String nombre, String nacionalidad, String telefono,
+            String login, String clave, Direccion direccion, Empleado empleadoCreador, Punto_Atencion punto_atencion) {
         this.empleadoPK = empleadoPK;
         this.tipo_empleado = tipo_empleado;
         this.nombre = nombre;
@@ -51,6 +56,7 @@ public class Empleado {
         this.clave = clave;
         this.direccion = direccion;
         this.empleadoCreador = empleadoCreador;
+        this.punto_atencion = punto_atencion;
     }
 
     public EmpleadoPK getEmpleadoPK() {
@@ -125,7 +131,17 @@ public class Empleado {
         this.empleadoCreador = empleadoCreador;
     }
 
+    public Punto_Atencion getPunto_atencion() {
+        return punto_atencion;
+    }
+
+    public void setPunto_atencion(Punto_Atencion punto_atencion) {
+        this.punto_atencion = punto_atencion;
+    }
+
     
+
+
     
 
 }

@@ -1,7 +1,6 @@
 package uniandes.edu.co.proyecto.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import uniandes.edu.co.proyecto.modelo.Cliente;
+
 import uniandes.edu.co.proyecto.modelo.Empleado;
 import uniandes.edu.co.proyecto.modelo.EmpleadoPK;
 import uniandes.edu.co.proyecto.repositorio.EmpleadoRepository;
@@ -36,11 +35,12 @@ public class EmpleadoController {
 
     @PostMapping("/empleado/new/save")
     public String empleadoGuardar(@ModelAttribute Empleado empleado) {
-        empleadoRepository.insertarEmpleado(empleadoPK.getTipo_doc(), empleadoPK.getNum_doc(), empleado.getNombre(), empleado.getNacionalidad(), 
-        empleado.getTelefono(), empleado.getLogin(), empleado.getClave(), empleado.getDireccion(), 
-         empleado.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), empleado.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), empleado.getTipo_empleado());
+        empleadoRepository.insertarEmpleado(empleadoPK.getTipo_doc(), empleadoPK.getNum_doc(), empleado.getTipo_empleado(), empleado.getNombre(), empleado.getNacionalidad(), 
+        empleado.getTelefono(), empleado.getLogin(), empleado.getClave(), empleado.getDireccion().getId(), empleado.getPunto_atencion().getId(),
+         empleado.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), empleado.getEmpleadoCreador().getEmpleadoPK().getNum_doc());
         return "redirect:/empleado";
     }
+
 
     @GetMapping("/empleado/{tipoDoc}/{numDoc}/edit")
     public String empleadoEditarForm(@PathVariable("tipoDoc") String tipoDoc, @PathVariable("numDoc") String numDoc, Model model) {

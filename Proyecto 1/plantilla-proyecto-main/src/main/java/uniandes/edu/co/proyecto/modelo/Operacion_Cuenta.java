@@ -30,7 +30,7 @@ public class Operacion_Cuenta {
     private Cuenta numero_cuenta;
 
 
-    private Integer monto;
+    private float monto;
 
     private Date hora;
 
@@ -59,7 +59,7 @@ public class Operacion_Cuenta {
         ;
     }
 
-    public Operacion_Cuenta(Integer ID, String tipo_operacion_cuenta, Cuenta numero_cuenta, Integer monto, Date hora, Date fecha, Empleado empleadoCreador, Cliente cliente, Punto_Atencion punto_atencion) {
+    public Operacion_Cuenta(Integer ID, String tipo_operacion_cuenta, Cuenta numero_cuenta, float monto, Date hora, Date fecha, Empleado empleadoCreador, Cliente cliente, Punto_Atencion punto_atencion) {
         this.ID = ID;
         this.tipo_operacion_cuenta = tipo_operacion_cuenta;
         this.numero_cuenta = numero_cuenta;
@@ -95,11 +95,11 @@ public class Operacion_Cuenta {
         this.numero_cuenta = numero_cuenta;
     }
 
-    public Integer getMonto() {
+    public float getMonto() {
         return monto;
     }
 
-    public void setMonto(Integer monto) {
+    public void setMonto(float monto) {
         this.monto = monto;
     }
 

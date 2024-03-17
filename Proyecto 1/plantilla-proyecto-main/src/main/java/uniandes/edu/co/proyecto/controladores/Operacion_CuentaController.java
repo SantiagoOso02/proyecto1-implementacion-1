@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.controladores;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,9 +32,10 @@ public class Operacion_CuentaController {
 
     @PostMapping("/operaciones_cuentas/new/save")
     public String operacion_cuentaGuardar(@ModelAttribute Operacion_Cuenta operacion_Cuenta){
-        operacion_CuentaRepository.insertarOperacion_Cuenta(operacion_Cuenta.getMonto(), operacion_Cuenta.getHora(), operacion_Cuenta.getFecha(), operacion_Cuenta.getTipo_operacion_cuenta(), operacion_Cuenta.getNumero_cuenta(), operacion_Cuenta.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), operacion_Cuenta.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), operacion_Cuenta.getCliente().getClientePK().getTipo_doc(), operacion_Cuenta.getCliente().getClientePK().getNum_doc(), operacion_Cuenta.getPunto_atencion());
+        operacion_CuentaRepository.insertarOperacion_Cuenta(operacion_Cuenta.getTipo_operacion_cuenta(), operacion_Cuenta.getNumero_cuenta().getNumero_cuenta(), operacion_Cuenta.getMonto(), operacion_Cuenta.getHora(), operacion_Cuenta.getFecha(), operacion_Cuenta.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), operacion_Cuenta.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), operacion_Cuenta.getCliente().getClientePK().getTipo_doc(), operacion_Cuenta.getCliente().getClientePK().getNum_doc(), operacion_Cuenta.getPunto_atencion().getId());
         return "redirect:/operaciones_cuentas";
     }
+
 
     @GetMapping("/operaciones_cuentas/{id}/edit")
     public String operacion_cuentaEditarForm(@PathVariable("id") Integer id, Model model){
@@ -48,9 +50,11 @@ public class Operacion_CuentaController {
 
     @PostMapping("/operaciones_cuentas/{id}/edit/save")
     public String operacion_cuentaEditarGuardar(@PathVariable("id") Integer id, @ModelAttribute Operacion_Cuenta operacion_Cuenta) {
-        operacion_CuentaRepository.actualizarOperacion_Cuenta(id, operacion_Cuenta.getMonto(), operacion_Cuenta.getHora(), operacion_Cuenta.getFecha(), operacion_Cuenta.getTipo_operacion_cuenta(), operacion_Cuenta.getNumero_cuenta(), operacion_Cuenta.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), operacion_Cuenta.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), operacion_Cuenta.getCliente().getClientePK().getTipo_doc(), operacion_Cuenta.getCliente().getClientePK().getNum_doc(), operacion_Cuenta.getPunto_atencion());
+        operacion_CuentaRepository.actualizarOperacion_Cuenta(id, operacion_Cuenta.getTipo_operacion_cuenta(), operacion_Cuenta.getNumero_cuenta().getNumero_cuenta(), operacion_Cuenta.getMonto(), operacion_Cuenta.getHora(), operacion_Cuenta.getFecha(), operacion_Cuenta.getEmpleadoCreador().getEmpleadoPK().getTipo_doc(), operacion_Cuenta.getEmpleadoCreador().getEmpleadoPK().getNum_doc(), operacion_Cuenta.getCliente().getClientePK().getTipo_doc(), operacion_Cuenta.getCliente().getClientePK().getNum_doc(), operacion_Cuenta.getPunto_atencion().getId());
         return "redirect:/operaciones_cuentas";
     }
+
+
 
     @GetMapping("/operaciones_cuentas/{id}/delete")
     public String operacion_cuentaEliminar(@PathVariable("id") Integer id){

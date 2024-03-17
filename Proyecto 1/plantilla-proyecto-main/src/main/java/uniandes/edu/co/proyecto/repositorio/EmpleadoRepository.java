@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.Direccion;
 import uniandes.edu.co.proyecto.modelo.Empleado;
 import uniandes.edu.co.proyecto.modelo.EmpleadoPK;
 
@@ -18,25 +17,26 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, EmpleadoPK> 
     @Query(value = "SELECT * FROM empleados", nativeQuery = true)
     Collection<Empleado> darEmpleados();
 
-    @Query(value = "SELECT * FROM empleados WHERE tipo_doc = :tipoDoc AND num_doc = :numDoc", nativeQuery = true)
-    Empleado darEmpleadoPorId(@Param("tipoDoc") String tipoDoc, @Param("numDoc") String numDoc);
+    @Query(value = "SELECT * FROM empleados WHERE tipo_doc = :tipo_doc AND num_doc = :num_doc", nativeQuery = true)
+    Empleado darEmpleadoPorId(@Param("tipo_doc") String tipo_doc, @Param("num_doc") String num_doc);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO empleados (tipo_doc, num_doc, nombre, nacionalidad, telefono, login, clave, direccion,  tipo_doc_empleado_creador, num_doc_empleado_creador, tipo_empleado) VALUES (:tipoDoc, :numDoc, :nombre, :nacionalidad, :telefono, :login, :clave, :direccion,  :tipoDocEmpleadoCreador, :numDocEmpleadoCreador, :tipoEmpleado)", nativeQuery = true)
-    void insertarEmpleado(@Param("tipoDoc") String tipoDoc, @Param("numDoc") String numDoc, @Param("nombre") String nombre, @Param("nacionalidad") String nacionalidad, @Param("telefono") String telefono, @Param("login") String login, @Param("clave") String clave, @Param("direccion") Direccion direccion,
-      @Param("tipoDocEmpleadoCreador") String tipoDocEmpleadoCreador, @Param("numDocEmpleadoCreador") String numDocEmpleadoCreador, @Param("tipoEmpleado") String tipoEmpleado);
+    @Query(value = "INSERT INTO empleados (tipo_doc, num_doc, tipo_empleado, nombre, nacionalidad, telefono, login, clave, direccion, punto_atencion, tipo_doc_empleado_creador, num_doc_empleado_creador) VALUES (:tipo_doc, :num_doc, :tipo_empleado, :nombre, :nacionalidad, :telefono, :login, :clave, :direccion, :punto_atencion, :tipo_doc_empleado_creador, :num_doc_empleado_creador)", nativeQuery = true)
+    void insertarEmpleado(@Param("tipo_doc") String tipo_doc, @Param("num_doc") String num_doc, @Param("tipo_empleado") String tipo_empleado, @Param("nombre") String nombre, @Param("nacionalidad") String nacionalidad, @Param("telefono") String telefono, @Param("login") String login, @Param("clave") String clave, @Param("direccion") Integer direccion,
+    @Param("punto_atencion") Integer punto_atencion, @Param("tipo_doc_empleado_creador") String tipo_doc_empleado_creador, @Param("num_doc_empleado_creador") String num_doc_empleado_creador);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE empleados SET nombre = :nombre, nacionalidad = :nacionalidad, telefono = :telefono, login = :login, clave = :clave, direccion = :direccion, tipo_doc_empleado_creador = :tipoDocEmpleadoCreador, num_doc_empleado_creador = :numDocEmpleadoCreador, tipo_empleado = :tipoEmpleado,  WHERE tipo_doc = :tipoDoc AND num_doc = :numDoc", nativeQuery = true)
-    void actualizarEmpleado(@Param("tipoDoc") String tipoDoc, @Param("numDoc") String numDoc, @Param("nombre") String nombre, @Param("nacionalidad") String nacionalidad, @Param("telefono") String telefono, @Param("login") String login, @Param("clave") String clave, @Param("direccion") Direccion direccion,
-     @Param("tipoDocEmpleadoCreador") String tipoDocEmpleadoCreador, @Param("numDocEmpleadoCreador") String numDocEmpleadoCreador, @Param("tipoEmpleado") String tipoEmpleado);
+    @Query(value = "UPDATE empleados SET tipo_empleado = :tipo_empleado, nombre = :nombre, nacionalidad = :nacionalidad, telefono = :telefono, login = :login, clave = :clave, direccion = :direccion, punto_atencion = :punto_atencion, tipo_doc_empleado_creador = :tipo_doc_empleado_creador, num_doc_empleado_creador = :num_doc_empleado_creador WHERE tipo_doc = :tipo_doc AND num_doc = :num_doc", nativeQuery = true)
+    void actualizarEmpleado(@Param("tipo_doc") String tipo_doc, @Param("num_doc") String num_doc, @Param("tipo_empleado") String tipo_empleado, @Param("nombre") String nombre, @Param("nacionalidad") String nacionalidad, @Param("telefono") String telefono, @Param("login") String login, @Param("clave") String clave, @Param("direccion") Integer direccion,
+    @Param("punto_atencion") Integer punto_atencion, @Param("tipo_doc_empleado_creador") String tipo_doc_empleado_creador, @Param("num_doc_empleado_creador") String num_doc_empleado_creador);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM empleados WHERE tipo_doc = :tipoDoc AND num_doc = :numDoc", nativeQuery = true)
-    void eliminarEmpleado(@Param("tipoDoc") String tipoDoc, @Param("numDoc") String numDoc);
+    @Query(value = "DELETE FROM empleados WHERE tipo_doc = :tipo_doc AND num_doc = :num_doc", nativeQuery = true)
+    void eliminarEmpleado(@Param("tipo_doc") String tipo_doc, @Param("num_doc") String num_doc);
+    
  
 
     
