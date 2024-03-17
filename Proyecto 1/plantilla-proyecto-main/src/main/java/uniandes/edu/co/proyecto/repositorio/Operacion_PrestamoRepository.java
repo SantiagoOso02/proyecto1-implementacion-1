@@ -21,20 +21,20 @@ public interface Operacion_PrestamoRepository extends JpaRepository<Operacion_Pr
     Collection<Operacion_Prestamo> darOperaciones_Prestamos();
 
     @Query(value = "SELECT * FROM OPERACIONES_PRESTAMO WHERE ID=:ID", nativeQuery = true)
-    Operacion_Prestamo darOperacion_Prestamo(@Param("ID") String ID);
+    Operacion_Prestamo darOperacion_Prestamo(@Param("ID") Integer ID);
 
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO OPERACIONES_PRESTAMO(ID, monto, hora, fecha, tipo, prestamo, tipo_doc_empleado, num_doc_empleado, tipo_doc_cliente, num_doc_cliente, punto_atencion) VALUES (bancos_sequence.nextval, :monto, :hora, :fecha, :tipo, :prestamo, :tipo_doc_empleado, :num_doc_empleado, :tipo_doc_cliente, :num_doc_cliente, :punto_atencion)", nativeQuery = true)
-    void insertarOperacion_Prestamo (@Param("monto") float monto, @Param("hora") Date hora, @Param("fecha") Date fecha, @Param("tipo") String tipo, @Param("prestamo") Prestamo prestamo, @Param("tipo_doc_empleado") Empleado tipo_doc_empleado, @Param ("num_doc_empleado") Empleado num_doc_empelado, @Param("tipo_doc_cliente") Cliente tipo_doc_cliente, @Param("num_doc_cliente") Cliente num_doc_cliente, @Param("punto_atencion") Punto_Atencion punto_atencion);
+    void insertarOperacion_Prestamo (@Param("monto") float monto, @Param("hora") Date hora, @Param("fecha") Date fecha, @Param("tipo") String tipo, @Param("prestamo") Prestamo prestamo, @Param("tipo_doc_empleado") String string, @Param ("num_doc_empleado") String string2, @Param("tipo_doc_cliente") String string3, @Param("num_doc_cliente") String string4, @Param("punto_atencion") Punto_Atencion punto_atencion);
 
     @Modifying
     @Transactional
     @Query(value = "UPDATE OPERACIONES_PRESTAMO SET monto = :monto, hora = :hora, fecha = :fecha, tipo = :tipo, prestamo = :prestamo, tipo_doc_empleado = :tipo_doc_empleado, num_doc_empleado = :num_doc_empleado, tipo_doc_cliente = :tipo_doc_cliente, num_doc_cliente = :num_doc_cliente, punto_atencion = :punto_atencion  WHERE ID=:ID", nativeQuery = true)
-    void actualizarOperacion_Prestamo (@Param("ID") String ID, @Param("monto") float monto, @Param("hora") Date hora, @Param("fecha") Date fecha, @Param("tipo") String tipo, @Param("prestamo") Prestamo prestamo, @Param("tipo_doc_empleado") Empleado tipo_doc_empleado, @Param ("num_doc_empleado") Empleado num_doc_empelado, @Param("tipo_doc_cliente") Cliente tipo_doc_cliente, @Param("num_doc_cliente") Cliente num_doc_cliente, @Param("punto_atencion") Punto_Atencion punto_atencion);
+    void actualizarOperacion_Prestamo (@Param("ID") Integer ID, @Param("monto") float monto, @Param("hora") Date hora, @Param("fecha") Date fecha, @Param("tipo") String tipo, @Param("prestamo") Prestamo prestamo, @Param("tipo_doc_empleado") String string, @Param ("num_doc_empleado") String string2, @Param("tipo_doc_cliente") String string3, @Param("num_doc_cliente") String string4, @Param("punto_atencion") Punto_Atencion punto_atencion);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM OPERACIONES_PRESTAMO WHERE ID=:ID", nativeQuery = true)
-    void eliminarOperacion_Prestamo (@Param("ID") String ID);
+    void eliminarOperacion_Prestamo (@Param("ID") Integer ID);
 }
